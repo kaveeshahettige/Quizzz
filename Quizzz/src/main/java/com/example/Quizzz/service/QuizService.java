@@ -5,6 +5,7 @@ import com.example.Quizzz.dao.Quizdao;
 import com.example.Quizzz.model.Question;
 import com.example.Quizzz.model.QuestionWrapper;
 import com.example.Quizzz.model.Quiz;
+import com.example.Quizzz.model.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,5 +48,20 @@ public class QuizService {
         }
 
         return new ResponseEntity<>(qForUsers,HttpStatus.OK);
+    }
+
+    public ResponseEntity<Integer> calculateResult(int id,List<Response> qResponse) {
+        Quiz quiz=quizdao.findById(id).get();
+        List<Question> qByDb=quiz.getQuestions();
+        int i=0;
+        int right=0;
+        for(Response r:qResponse){
+            if(r.getResponse().equals(qByDb.get(i).getRight_answer())){
+                right++;
+            }
+
+            i++;
+        }
+        return new ResponseEntity<>(right,HttpStatus.OK);
     }
 }
