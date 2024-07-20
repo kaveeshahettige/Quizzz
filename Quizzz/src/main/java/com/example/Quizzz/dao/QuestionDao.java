@@ -1,6 +1,6 @@
 package com.example.Quizzz.dao;
 
-import com.example.Quizzz.Question;
+import com.example.Quizzz.model.Question;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -21,4 +21,7 @@ public interface QuestionDao extends JpaRepository<Question,Integer> {
     void editCategoryById(int id, String category);
 
 
+
+    @Query(value="Select * from question where category=?1 order by RAND() limit ?2",nativeQuery = true)
+    List<Question> findRandomQuestionsByCategory(String category,int noQ);
 }
