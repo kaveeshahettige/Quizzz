@@ -28,4 +28,15 @@ public class QuestionController {
     public String addQuestion(@RequestBody Question question){
         return questionService.addQuestion(question);
     }
+
+//    @GetMapping("getQuestionByIdAndCategory/{id}/{category}")
+//    public Question getQuestionByIdAndCategory(@PathVariable int id,@PathVariable String category){
+//        return questionService.getQuestionByIdAndCategory(id,category);
+//
+//    }
+
+    @PutMapping("editCategory/{id}/{category}")
+    public String editCategoryById(@PathVariable int id,@PathVariable String category){
+        return questionService.editCategoryById(id,category);
+    }
 }

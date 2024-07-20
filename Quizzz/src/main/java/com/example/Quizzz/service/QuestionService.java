@@ -26,4 +26,13 @@ public class QuestionService {
         return "success";
     }
 
+//    public Question getQuestionByIdAndCategory(int id,String category){
+//        return questionDao.getQuestionByIdAndCategory(id,category);
+//    }
+
+    public String editCategoryById(int id, String category){
+        questionDao.editCategoryById(id, category);
+        return "success";
+    }
+
 }
